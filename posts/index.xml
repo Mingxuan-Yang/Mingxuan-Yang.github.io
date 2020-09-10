@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Mingxuan Yang</title>
+    <link>https://Mingxuan-Yang.github.io/posts/</link>
+    <description>Recent content in Posts on Mingxuan Yang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://Mingxuan-Yang.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Euler Project Problem 85</title>
+      <link>https://Mingxuan-Yang.github.io/posts/euler-project-problem-85/</link>
+      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/euler-project-problem-85/</guid>
+      <description>Problem Problem 85: Counting rectangles
+By counting carefully it can be seen that a rectangular grid measuring 3 by 2 contains eighteen rectangles:
+Although there exists no rectangular grid that contains exactly two million rectangles, find the area of the grid with the nearest solution.
+Analysis First of all, we need to specify the number of possible rectangles when the width and length of the grid are x units and y units.</description>
+    </item>
+    
+    <item>
+      <title>Euler Project Problem 31</title>
+      <link>https://Mingxuan-Yang.github.io/posts/euler-project-problem-31/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/euler-project-problem-31/</guid>
+      <description>Problem Problem 31: Coin sums
+In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation: 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p). It is possible to make £2 in the following way:
+1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
+How many different ways can £2 be made using any number of coins?</description>
+    </item>
+    
+    <item>
+      <title>Euler Project Problem 25</title>
+      <link>https://Mingxuan-Yang.github.io/posts/euler-project-problem-25/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/euler-project-problem-25/</guid>
+      <description>Problem Problem 25: 1000-digit Fibonacci number
+The Fibonacci sequence is defined by the recurrence relation:
+F(n) = F(n-1) + F(n-2), where F(1) = 1 and F(2) = 1.
+Hence the first 12 terms will be:
+F(1) = 1
+F(2) = 1
+F(3) = 2
+F(4) = 3
+F(5) = 5
+F(6) = 8
+F(7) = 13
+F(8) = 21
+F(9) = 34
+F(10) = 55
+F(11) = 89
+F(12) = 144</description>
+    </item>
+    
+    <item>
+      <title>Creating Personal Website Using Hugo</title>
+      <link>https://Mingxuan-Yang.github.io/posts/creating-a-new-theme/</link>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/creating-a-new-theme/</guid>
+      <description>Introduction to Hugo Hugo is one of the most popular open-source static site generators. With the ability of generating most websites within seconds, it provides the users with the world’s fastest framework for building personal websites.
+The installation and deployment of Hugo are simple and efficient. With just 7 simple steps, we can easily use Hugo to build our own personal websites. Before introducing the 7 steps, the reader needs to get a Github account.</description>
+    </item>
+    
+  </channel>
+</rss>

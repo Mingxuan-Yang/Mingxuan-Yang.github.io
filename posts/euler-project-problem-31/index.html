@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.74.3" />
+
+    
+    
+    
+
+<title>Euler Project Problem 31 • Mingxuan Yang</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Euler Project Problem 31"/>
+<meta name="twitter:description" content="Problem Problem 31: Coin sums
+In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation: 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p). It is possible to make £2 in the following way:
+1×£1 &#43; 1×50p &#43; 2×20p &#43; 1×5p &#43; 1×2p &#43; 3×1p
+How many different ways can £2 be made using any number of coins?"/>
+
+<meta property="og:title" content="Euler Project Problem 31" />
+<meta property="og:description" content="Problem Problem 31: Coin sums
+In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation: 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p). It is possible to make £2 in the following way:
+1×£1 &#43; 1×50p &#43; 2×20p &#43; 1×5p &#43; 1×2p &#43; 3×1p
+How many different ways can £2 be made using any number of coins?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Mingxuan-Yang.github.io/posts/euler-project-problem-31/" />
+<meta property="article:published_time" content="2020-09-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-08T00:00:00+00:00" /><meta property="og:site_name" content="website" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.3081c4981fb69a2783dd36ecfdd0e6ba7a158d4cbfdd290ebce8f78ba0469fc6.css" integrity="sha256-MIHEmB&#43;2mieD3Tbs/dDmunoVjUy/3SkOvOj3i6BGn8Y=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://Mingxuan-Yang.github.io/">Mingxuan Yang</a>
+      </span>
+      
+        
+        
+        
+        <div class="author-image">
+          <img src="https://Mingxuan-Yang.github.io/img/photo.png" alt="Author Image" class="img--circle img--headshot element--center">
+        </div>
+        
+      
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Mingxuan Yang</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/Mingxuan-Yang" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://linkedin.com/in/mingxuan-yang-9468391a1" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="mailto:mingxuan.yang@duke.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 - 2020 htr3n
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+<div class="builtwith">
+Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
+</div>
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Euler Project Problem 31</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Sep 8, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/dynamic-programming">DYNAMIC PROGRAMMING</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/euler-project">EULER PROJECT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/euler-project">euler project</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/dynamic-programming">dynamic programming</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 6 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <h2 id="problem">Problem</h2>
+<p><strong>Problem 31: Coin sums</strong></p>
+<p>In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation: 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p). It is possible to make £2 in the following way:</p>
+<p>1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p</p>
+<p>How many different ways can £2 be made using any number of coins?</p>
+<h2 id="analysis">Analysis</h2>
+<p>This is a typical problem that can be solved by dynammic programming. It is quite helpful to consider the numbers of ways to make up different values using different combinations of coins into a table. In this special table, each row represents a different value that we&rsquo;d like to make up, and each column represents different combinations of coins. The elements in the table mean the number of different ways for the corresponding row and column. This table can be represented as:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>≤1p</th>
+<th>≤2p</th>
+<th>≤5p</th>
+<th>≤10p</th>
+<th>≤20p</th>
+<th>≤50p</th>
+<th>≤100p</th>
+<th>≤200p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1p</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2p</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3p</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4p</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5p</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table>
+<p>In this table, the column <code>≤20p</code> means the corresponding target values are composed of coins equal or smaller than 20 pence. So the value of the second row and third column shows that there are 2 different ways to make up 2 pence using coin 1p, 2p and 5p. Therefore, our main goal in this problem is to find the value in the 200th row and the last column of the above table.</p>
+<p>The first conclusion we can get from the table is that the values within the first column are all 1. This is due to the fact that using only 1-penny coin can merely result in 1 result no matter what the target value is.</p>
+<p>Then from the definition of this table, we know that if the maximum denomination in the column is larger than the target value, the corresponding element value will be the same with its left cell. For example, the values between the second column to the last column for target 2p remain the same.</p>
+<p>Besides, if the maximum denomination in the column, which we assume to be m, is equal or smaller than the target value, which we assume to be n, the possible combinations can be divided into two parts &ndash; One part is the combinations without using m-pence coin, and the other is the combinations using m-pence coin at least once. If we suppose the position of the corresponding element is <strong>table[n][j]</strong>, where j &gt; 1 and i ≥ j, then the first part can be represented by the value of the left cell, <strong>table[n][j-1]</strong>, and the second part can be shown as <strong>table[n-m][j]</strong>. The reason for the second part is that since we will definitely use at least one m-pence coin, the number of the corresponding combinations will be the same as the number of combinations with target n-m. It doesn&rsquo;t matter whether the combinations with target n-m use m-pence coins or not, thus the second part is represented as <strong>table[n-m][j]</strong> rather than <strong>table[n-m][j-1]</strong>.</p>
+<p>We can build the entire table through the above properties. However, to make the algorithm more efficient, it is better to conduct manipulations based on a single column rather than the entire table. To make the manipulations possible, from the perspective of table, an extra row needs to be added at the top of the table indexed by 0. All of the values within the extra row is 1.</p>
+<p>Thus we can define an objective column with 201 elements, since the target value in <a href="https://projecteuler.net/archives">Euler Project</a> <a href="https://projecteuler.net/problem=31">Problem 31</a> is £2. The initial values are:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>≤1p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table>
+<p>Then we add 2-penny coin onto the stage. The column values with target value equal or greater than 2 should be modified through the rule <strong>new_column[i]</strong> = <strong>old_column[i]</strong> + <strong>new_column[i-2]</strong>, where i ≥ 2. Thus the column values become:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>≤2p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1p</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2p</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3p</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4p</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5p</td>
+<td>3</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table>
+<p>We will continue the update until m = 200. Then the last value of the objective column will be the desired result.</p>
+<h2 id="solution">Solution</h2>
+<p>Based on the analysis, a function can be constructed to solve the generalized problem. The parameter in the self-built function is the pool of possible currency denominations <code>coins</code>, which are also the possible ms, and the target value <code>target</code>, which is also n. To get the result of <a href="https://projecteuler.net/archives">Euler Project</a> <a href="https://projecteuler.net/problem=31">Problem 31</a>, we should set <code>coins</code> = [1, 2, 5, 10, 20, 50, 100, 200] as well as <code>target</code> = 200. The function and the corresponding annotation are shown below.</p>
+<pre><code>def coin_sum(coins, target):
+    &quot;&quot;&quot;Return the number of combinations of currency denominations.
+    
+    This function can be used to solve problems like how many different ways can the value
+    `target` be made using any number of values within `coins`.
+    
+    Parameters
+    ----------
+    coins : array_like
+        All possible values that can be used to make up the `target` value. These values 
+        should be integers. In the context of currency denomination, all of the values 
+        within `coins` should have the same units, which is also the minimum unit. For 
+        example, if `coins` contains both penny and pound, the values should be represented
+        by pence unit, which accords with the integral requirement.
+        
+    target : int
+        The resulting total value. In the context of currency denomination, it needs to 
+        have the same unit with values in `coins`.
+        
+    Returns
+    -------
+    int
+        The number of possible combinations to make up `target` using values in `coins`.
+        
+    Examples
+    --------
+    The number of different ways to make up 2 pounds using 8 possible coins: 1 penny, 
+    2 pence, 5 pence, 10 pence, 20 pence, 50 pence, 1 pound, and 2 pounds.
+
+    &gt;&gt;&gt; coin_sum([1, 2, 5, 10, 20, 50, 100, 200], 200)
+    73682
+    &quot;&quot;&quot;
+    numbers = [1]*(target + 1)
+    
+    for i in coins[1:]:
+        for j in range(i, target+1):
+            numbers[j] += numbers[j-i]
+            
+    return int(numbers[target])
+</code></pre><p>The result we desire is:</p>
+<pre><code>&gt;&gt;&gt; coin_sum([1, 2, 5, 10, 20, 50, 100, 200], 200)
+73682
+</code></pre><p>Therefore, there are 73682 different ways that £2 can be made using 8 possible coins 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/euler-project-problem-25/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Euler Project Problem 25</span>
+    </a>
+    
+    
+    <a href="/posts/euler-project-problem-85/" class="navigation-next">
+      <span class="navigation-tittle">Euler Project Problem 85</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+    
+
+
+
+    </body>
+</html>

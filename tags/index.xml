@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Mingxuan Yang</title>
+    <link>https://Mingxuan-Yang.github.io/tags/</link>
+    <description>Recent content in Tags on Mingxuan Yang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://Mingxuan-Yang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>euler project</title>
+      <link>https://Mingxuan-Yang.github.io/tags/euler-project/</link>
+      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/euler-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geometry</title>
+      <link>https://Mingxuan-Yang.github.io/tags/geometry/</link>
+      <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/geometry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dynamic programming</title>
+      <link>https://Mingxuan-Yang.github.io/tags/dynamic-programming/</link>
+      <pubDate>Tue, 08 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/dynamic-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fibonacci</title>
+      <link>https://Mingxuan-Yang.github.io/tags/fibonacci/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/fibonacci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>https://Mingxuan-Yang.github.io/tags/github/</link>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://Mingxuan-Yang.github.io/tags/hugo/</link>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>personal website</title>
+      <link>https://Mingxuan-Yang.github.io/tags/personal-website/</link>
+      <pubDate>Sat, 22 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/personal-website/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

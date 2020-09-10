@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Mingxuan Yang</title>
+    <link>https://Mingxuan-Yang.github.io/portfolio/</link>
+    <description>Recent content in Projects on Mingxuan Yang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://Mingxuan-Yang.github.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SGHMC</title>
+      <link>https://Mingxuan-Yang.github.io/portfolio/sghmc/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/portfolio/sghmc/</guid>
+      <description>In the era of big data, the overwhelming amount of data input can easily render popular statistical methods useless. Hamiltonian Monte Carlo simulation algorithm (HMC) is one of such widely-applied MCMC simulation techniques, famous for its fast convergence speed and the ability to work with correlated samples. However, the algorithm requires to compute the gradient of the potential energy function, which can be computationally prohibitive due to immense datasets that are common nowadays.</description>
+    </item>
+    
+  </channel>
+</rss>
