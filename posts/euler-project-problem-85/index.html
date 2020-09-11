@@ -267,11 +267,11 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <p>Thus the number of possible rectangles with grid x × 1 is x(x+1)/2. The same pattern can be applied to the 2-dimensional case. Therefore, the number of possible rectangles with grid x × y is the product of x(x+1)/2 and y(y+1)/2, which lead to x(x+1)y(y+1)/4. Then the problem becomes what is the value of x × y when x(x+1)y(y+1)/4 is closest to 2,000,000.</p>
 <p>The result can be obtained through traversal. To lower the time cost, we need to find out the maximum width and maximum length of the possible grids if not assigned. Implicitly, the length y is larger than the width x, so the maximum x value can be equal y. In this condition, we have the equation:</p>
 <p>x(x+1)x(x+1)/4 = 2,000,000</p>
-<p>By solving it approximately, the maximum width should be ⌈(4×2,000,000)^{1/4}⌉, where ⌈x⌉ is the ceiling of x.</p>
+<p>By solving it approximately, the maximum width should be ⌈(4×2,000,000)^(1/4)⌉, where ⌈x⌉ is the ceiling of x.</p>
 <p>Then let&rsquo;s turn to the maximum length of the possible grids. According to the formula, when x is set to be 1, y will reach its maximum. By solving the equation:</p>
 <p>y(y+1)×2/4 = 2,000,000</p>
-<p>We know that ⌈(2×2,000,000)^{1/2}⌉ is the maximum length.</p>
-<p>Therefore, after calculating all possibilities through looping, where x is from 1 to ⌈(4×2,000,000)^{1/4}⌉, y is from x to ⌈(2×2,000,000)^{1/2}⌉, we will get the desired result.</p>
+<p>We know that ⌈(2×2,000,000)^(1/2)⌉ is the maximum length.</p>
+<p>Therefore, after calculating all possibilities through looping, where x is from 1 to ⌈(4×2,000,000)^(1/4)⌉, y is from x to ⌈(2×2,000,000)^(1/2)⌉, we will get the desired result.</p>
 <h2 id="solution">Solution</h2>
 <p>According to the analysis, a function can be constructed using Python to solve the generalized problem. The parameter in the self-built function is <code>target</code>, which is the target number of possible rectangles, and <code>max_width</code> and <code>max_length</code>, which are defaulted to be None. To get the result of <a href="https://projecteuler.net/archives">Euler Project</a> <a href="https://projecteuler.net/problem=85">Problem 85</a>, we should set <code>target</code> to be 2,000,000. The function and the corresponding annotation are shown below.</p>
 <pre><code>def counting(target, max_width = None, max_length = None):
@@ -292,25 +292,25 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
         
     max_width : int, optional
         The maximum width of the resulting grid. It should be positive. If `max_width` is not 
-        given, the value ⌈(4n)^{1/4}⌉, where n is the value of 
+        given, the value ⌈(4n)^(1/4)⌉, where n is the value of 
         `target`, will be employed based on the following formula.
         
             n = x(x + 1)y(y + 1)/4
         
         Here x and y represent the width and length of the grid. y is implicitly larger 
         than x. Therefore, the maximum value of x is equal to y. After calculation, it 
-        should be approximately ⌈(4n)^{1/4}⌉.
+        should be approximately ⌈(4n)^(1/4)⌉.
         
     max_length : int, optional
         The maximum length of the resulting grid. It should be positive. If `max_length` is 
-        not given, the value ⌈(2n)^{1/2}⌉, where n is the value of 
+        not given, the value ⌈(2n)^(1/2)⌉, where n is the value of 
         `target`, will be employed based on the following formula.
         
             n = x(x + 1)y(y + 1)/4
         
         Here x and y represent the width and length of the grid. y is implicitly larger 
         than x. When x is equal to 1, y will reach its maximum value. After calculation, 
-        it should be approximately ⌈(2n)^{1/2}⌉.
+        it should be approximately ⌈(2n)^(1/2)⌉.
         
     Returns
     -------
