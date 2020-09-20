@@ -392,49 +392,49 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <p>We will continue the update until m = 200. Then the last value of the objective column will be the desired result.</p>
 <h2 id="solution">Solution</h2>
 <p>Based on the analysis, a function can be constructed using Python to solve the generalized problem. The parameter in the self-built function is the pool of possible currency denominations <code>coins</code>, which are also the possible ms, and the target value <code>target</code>, which is also n. To get the result of <a href="https://projecteuler.net/archives">Euler Project</a> <a href="https://projecteuler.net/problem=31">Problem 31</a>, we should set <code>coins</code> = [1, 2, 5, 10, 20, 50, 100, 200] as well as <code>target</code> = 200. The function and the corresponding annotation are shown below.</p>
-<pre><code>def coin_sum(coins, target):
-    &quot;&quot;&quot;Return the number of combinations of currency denominations.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">coin_sum</span>(coins, target):
+    <span style="color:#e6db74">&#34;&#34;&#34;Return the number of combinations of currency denominations.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    This function can be used to solve problems like how many different ways can the value
+</span><span style="color:#e6db74">    `target` be made using any number of values within `coins`.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Parameters
+</span><span style="color:#e6db74">    ----------
+</span><span style="color:#e6db74">    coins : array_like
+</span><span style="color:#e6db74">        All possible values that can be used to make up the `target` value. These values 
+</span><span style="color:#e6db74">        should be integers. In the context of currency denomination, all of the values 
+</span><span style="color:#e6db74">        within `coins` should have the same units, which is also the minimum unit. For 
+</span><span style="color:#e6db74">        example, if `coins` contains both penny and pound, the values should be represented
+</span><span style="color:#e6db74">        by pence unit, which accords with the integral requirement.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    target : int
+</span><span style="color:#e6db74">        The resulting total value. In the context of currency denomination, it needs to 
+</span><span style="color:#e6db74">        have the same unit with values in `coins`.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    Returns
+</span><span style="color:#e6db74">    -------
+</span><span style="color:#e6db74">    int
+</span><span style="color:#e6db74">        The number of possible combinations to make up `target` using values in `coins`.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    Examples
+</span><span style="color:#e6db74">    --------
+</span><span style="color:#e6db74">    The number of different ways to make up 2 pounds using 8 possible coins: 1 penny, 
+</span><span style="color:#e6db74">    2 pence, 5 pence, 10 pence, 20 pence, 50 pence, 1 pound, and 2 pounds.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &gt;&gt;&gt; coin_sum([1, 2, 5, 10, 20, 50, 100, 200], 200)
+</span><span style="color:#e6db74">    73682
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    numbers <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>(target <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
     
-    This function can be used to solve problems like how many different ways can the value
-    `target` be made using any number of values within `coins`.
-    
-    Parameters
-    ----------
-    coins : array_like
-        All possible values that can be used to make up the `target` value. These values 
-        should be integers. In the context of currency denomination, all of the values 
-        within `coins` should have the same units, which is also the minimum unit. For 
-        example, if `coins` contains both penny and pound, the values should be represented
-        by pence unit, which accords with the integral requirement.
-        
-    target : int
-        The resulting total value. In the context of currency denomination, it needs to 
-        have the same unit with values in `coins`.
-        
-    Returns
-    -------
-    int
-        The number of possible combinations to make up `target` using values in `coins`.
-        
-    Examples
-    --------
-    The number of different ways to make up 2 pounds using 8 possible coins: 1 penny, 
-    2 pence, 5 pence, 10 pence, 20 pence, 50 pence, 1 pound, and 2 pounds.
-
-    &gt;&gt;&gt; coin_sum([1, 2, 5, 10, 20, 50, 100, 200], 200)
-    73682
-    &quot;&quot;&quot;
-    numbers = [1]*(target + 1)
-    
-    for i in coins[1:]:
-        for j in range(i, target+1):
-            numbers[j] += numbers[j-i]
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> coins[<span style="color:#ae81ff">1</span>:]:
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i, target<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+            numbers[j] <span style="color:#f92672">+=</span> numbers[j<span style="color:#f92672">-</span>i]
             
-    return int(numbers[target])
-</code></pre><p>The result we desire is:</p>
-<pre><code>&gt;&gt;&gt; coin_sum([1, 2, 5, 10, 20, 50, 100, 200], 200)
-73682
-</code></pre><p>Therefore, there are 73682 different ways that £2 can be made using 8 possible coins 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).</p>
+    <span style="color:#66d9ef">return</span> int(numbers[target])
+</code></pre></div><p>The result we desire is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> coin_sum([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">200</span>], <span style="color:#ae81ff">200</span>)
+<span style="color:#ae81ff">73682</span>
+</code></pre></div><p>Therefore, there are 73682 different ways that £2 can be made using 8 possible coins 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).</p>
 
   </div>
   

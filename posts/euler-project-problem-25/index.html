@@ -240,47 +240,47 @@ F(12) = 144</p>
 <p>This method is not the fastest one, but it can be realized with only the built-in functions of Python. And since 1000 is not a quite large number, the difference in execution time can be ignored.</p>
 <h2 id="solution">Solution</h2>
 <p>Based on the analysis, we can construct a function using Python to solve the generalized problem. The parameter in the self-built function is the resulting number of digits <code>n</code>. To get the result of <a href="https://projecteuler.net/archives">Euler Project</a> <a href="https://projecteuler.net/problem=25">Problem 25</a>, this function can be applied with <code>n</code> set to be 1000. The function and the corresponding annotation are shown below.</p>
-<pre><code>def Fibonacci_digit(n):
-    &quot;&quot;&quot;Return the index of the first term in the Fibonacci sequence to contain n digits.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Fibonacci_digit</span>(n):
+    <span style="color:#e6db74">&#34;&#34;&#34;Return the index of the first term in the Fibonacci sequence to contain n digits.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    The Fibonacci sequence is defined by the recurrence relation:
+</span><span style="color:#e6db74">        F(n) = F(n-1) + F(n-2), where F(1) = F(2) = 1.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Parameters
+</span><span style="color:#e6db74">    ----------
+</span><span style="color:#e6db74">    n : int
+</span><span style="color:#e6db74">        The resulting number of digits. The Fibonacci sequence at the resulting index is
+</span><span style="color:#e6db74">        desired to contain `n` digits.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    Returns
+</span><span style="color:#e6db74">    -------
+</span><span style="color:#e6db74">    int
+</span><span style="color:#e6db74">        The index of the first term in the Fibonacci sequence that contains `n` digits.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    Examples
+</span><span style="color:#e6db74">    --------
+</span><span style="color:#e6db74">    The index of the first term in the Fibonacci sequence containing 3 digits.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &gt;&gt;&gt; Fibonacci_digit(3)
+</span><span style="color:#e6db74">    12
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    The index of the first term in the Fibonacci sequence containing 1000 digits.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    &gt;&gt;&gt; Fibonacci_digit(1000)
+</span><span style="color:#e6db74">    4782
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
     
-    The Fibonacci sequence is defined by the recurrence relation:
-        F(n) = F(n-1) + F(n-2), where F(1) = F(2) = 1.
-    
-    Parameters
-    ----------
-    n : int
-        The resulting number of digits. The Fibonacci sequence at the resulting index is
-        desired to contain `n` digits.
+    F <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]
+    <span style="color:#66d9ef">while</span> len(str(F[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])) <span style="color:#f92672">&lt;</span> n:
+        F<span style="color:#f92672">.</span>append(F[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> F[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>])
         
-    Returns
-    -------
-    int
-        The index of the first term in the Fibonacci sequence that contains `n` digits.
-        
-    Examples
-    --------
-    The index of the first term in the Fibonacci sequence containing 3 digits.
-
-    &gt;&gt;&gt; Fibonacci_digit(3)
-    12
-    
-    The index of the first term in the Fibonacci sequence containing 1000 digits.
-    
-    &gt;&gt;&gt; Fibonacci_digit(1000)
-    4782
-    &quot;&quot;&quot;
-    if n == 1:
-        return 1
-    
-    F = [1,1]
-    while len(str(F[-1])) &lt; n:
-        F.append(F[-1] + F[-2])
-        
-    return F.index(F[-1]) + 1
-</code></pre><p>The result we desire is:</p>
-<pre><code>&gt;&gt;&gt; Fibonacci_digit(1000)
-4782
-</code></pre><p>Therefore, the index of the first term in the Fibonacci sequence to contain 1000 digits is 4782.</p>
+    <span style="color:#66d9ef">return</span> F<span style="color:#f92672">.</span>index(F[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p>The result we desire is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> Fibonacci_digit(<span style="color:#ae81ff">1000</span>)
+<span style="color:#ae81ff">4782</span>
+</code></pre></div><p>Therefore, the index of the first term in the Fibonacci sequence to contain 1000 digits is 4782.</p>
 
   </div>
   

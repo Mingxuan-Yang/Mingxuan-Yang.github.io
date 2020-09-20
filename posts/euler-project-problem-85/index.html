@@ -274,74 +274,74 @@ Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.c
 <p>Therefore, after calculating all possibilities through looping, where x is from 1 to ⌈(4×2,000,000)^(1/4)⌉, y is from x to ⌈(2×2,000,000)^(1/2)⌉, we will get the desired result.</p>
 <h2 id="solution">Solution</h2>
 <p>According to the analysis, a function can be constructed using Python to solve the generalized problem. The parameter in the self-built function is <code>target</code>, which is the target number of possible rectangles, and <code>max_width</code> and <code>max_length</code>, which are defaulted to be None. To get the result of <a href="https://projecteuler.net/archives">Euler Project</a> <a href="https://projecteuler.net/problem=85">Problem 85</a>, we should set <code>target</code> to be 2,000,000. The function and the corresponding annotation are shown below.</p>
-<pre><code>def counting(target, max_width = None, max_length = None):
-    &quot;&quot;&quot;Return the area of the grid with the nearest number of possible rectangles compared 
-    with `target`.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">counting</span>(target, max_width <span style="color:#f92672">=</span> None, max_length <span style="color:#f92672">=</span> None):
+    <span style="color:#e6db74">&#34;&#34;&#34;Return the area of the grid with the nearest number of possible rectangles compared 
+</span><span style="color:#e6db74">    with `target`.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    The sides of the grid and the possible rectangles are integers that are equal or greater 
+</span><span style="color:#e6db74">    than 1. If there exists a grid which contains exactly `target` number of rectangles, the 
+</span><span style="color:#e6db74">    corresponding area will be the returning result. Otherwise, the area of the grid 
+</span><span style="color:#e6db74">    containing the closest number will be returned.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    Parameters
+</span><span style="color:#e6db74">    ----------
+</span><span style="color:#e6db74">    target : int
+</span><span style="color:#e6db74">        The desired number of possible rectangles. It should be positive. If no grid has 
+</span><span style="color:#e6db74">        exactly `target` number of rectangles, the grid containing the closest number will 
+</span><span style="color:#e6db74">        be applied.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    max_width : int, optional
+</span><span style="color:#e6db74">        The maximum width of the resulting grid. It should be positive. If `max_width` is not 
+</span><span style="color:#e6db74">        given, the value ⌈(4n)^(1/4)⌉, where n is the value of 
+</span><span style="color:#e6db74">        `target`, will be employed based on the following formula.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">            n = x(x + 1)y(y + 1)/4
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        Here x and y represent the width and length of the grid. y is implicitly larger 
+</span><span style="color:#e6db74">        than x. Therefore, the maximum value of x is equal to y. After calculation, it 
+</span><span style="color:#e6db74">        should be approximately ⌈(4n)^(1/4)⌉.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    max_length : int, optional
+</span><span style="color:#e6db74">        The maximum length of the resulting grid. It should be positive. If `max_length` is 
+</span><span style="color:#e6db74">        not given, the value ⌈(2n)^(1/2)⌉, where n is the value of 
+</span><span style="color:#e6db74">        `target`, will be employed based on the following formula.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">            n = x(x + 1)y(y + 1)/4
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">        Here x and y represent the width and length of the grid. y is implicitly larger 
+</span><span style="color:#e6db74">        than x. When x is equal to 1, y will reach its maximum value. After calculation, 
+</span><span style="color:#e6db74">        it should be approximately ⌈(2n)^(1/2)⌉.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    Returns
+</span><span style="color:#e6db74">    -------
+</span><span style="color:#e6db74">    int
+</span><span style="color:#e6db74">        The area of the grid which has the nearest number of possible rectangles compared 
+</span><span style="color:#e6db74">        with `target`.
+</span><span style="color:#e6db74">        
+</span><span style="color:#e6db74">    Examples
+</span><span style="color:#e6db74">    --------
+</span><span style="color:#e6db74">    The area of the grid with almost two millions number of possible rectangles.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &gt;&gt;&gt; counting(2000000)
+</span><span style="color:#e6db74">    2772
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> max_width:
+        max_width <span style="color:#f92672">=</span> int((<span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>target)<span style="color:#f92672">**</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> max_length:
+        max_length <span style="color:#f92672">=</span> int((<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>target)<span style="color:#f92672">**</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">//</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+    diff_min <span style="color:#f92672">=</span> target
     
-    The sides of the grid and the possible rectangles are integers that are equal or greater 
-    than 1. If there exists a grid which contains exactly `target` number of rectangles, the 
-    corresponding area will be the returning result. Otherwise, the area of the grid 
-    containing the closest number will be returned.
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, max_width <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(i, max_length <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>):
+            diff <span style="color:#f92672">=</span> abs(i<span style="color:#f92672">*</span>(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>j<span style="color:#f92672">*</span>(j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">-</span> target)
+            <span style="color:#66d9ef">if</span> diff <span style="color:#f92672">&lt;</span> diff_min:
+                area, diff_min <span style="color:#f92672">=</span> i<span style="color:#f92672">*</span>j, diff
     
-    Parameters
-    ----------
-    target : int
-        The desired number of possible rectangles. It should be positive. If no grid has 
-        exactly `target` number of rectangles, the grid containing the closest number will 
-        be applied.
-        
-    max_width : int, optional
-        The maximum width of the resulting grid. It should be positive. If `max_width` is not 
-        given, the value ⌈(4n)^(1/4)⌉, where n is the value of 
-        `target`, will be employed based on the following formula.
-        
-            n = x(x + 1)y(y + 1)/4
-        
-        Here x and y represent the width and length of the grid. y is implicitly larger 
-        than x. Therefore, the maximum value of x is equal to y. After calculation, it 
-        should be approximately ⌈(4n)^(1/4)⌉.
-        
-    max_length : int, optional
-        The maximum length of the resulting grid. It should be positive. If `max_length` is 
-        not given, the value ⌈(2n)^(1/2)⌉, where n is the value of 
-        `target`, will be employed based on the following formula.
-        
-            n = x(x + 1)y(y + 1)/4
-        
-        Here x and y represent the width and length of the grid. y is implicitly larger 
-        than x. When x is equal to 1, y will reach its maximum value. After calculation, 
-        it should be approximately ⌈(2n)^(1/2)⌉.
-        
-    Returns
-    -------
-    int
-        The area of the grid which has the nearest number of possible rectangles compared 
-        with `target`.
-        
-    Examples
-    --------
-    The area of the grid with almost two millions number of possible rectangles.
-
-    &gt;&gt;&gt; counting(2000000)
-    2772
-    &quot;&quot;&quot;
-    if not max_width:
-        max_width = int((4*target)**(1/4) // 1 + 1)
-    if not max_length:
-        max_length = int((2*target)**(1/2) // 1 + 1)
-    diff_min = target
-    
-    for i in range(1, max_width + 1):
-        for j in range(i, max_length + 1):
-            diff = abs(i*(i+1)*j*(j+1)/4 - target)
-            if diff &lt; diff_min:
-                area, diff_min = i*j, diff
-    
-    return area
-</code></pre><p>The result we desire is:</p>
-<pre><code>&gt;&gt;&gt; counting(2000000)
-2772
-</code></pre><p>Therefore, although there exists no rectangular grid that contains exactly two million rectangles, the area of the grid with the nearest solution is equal to 2772.</p>
+    <span style="color:#66d9ef">return</span> area
+</code></pre></div><p>The result we desire is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> counting(<span style="color:#ae81ff">2000000</span>)
+<span style="color:#ae81ff">2772</span>
+</code></pre></div><p>Therefore, although there exists no rectangular grid that contains exactly two million rectangles, the area of the grid with the nearest solution is equal to 2772.</p>
 
   </div>
   
