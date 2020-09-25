@@ -6,11 +6,7 @@
     <description>Recent content in euler project on Mingxuan Yang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://Mingxuan-Yang.github.io/tags/euler-project/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/tags/euler-project/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Euler Project Problem 85 using Python</title>
       <link>https://Mingxuan-Yang.github.io/posts/euler-project-problem-85/</link>
