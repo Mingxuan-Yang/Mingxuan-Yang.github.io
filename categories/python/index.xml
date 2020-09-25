@@ -6,10 +6,19 @@
     <description>Recent content in Python on Mingxuan Yang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://Mingxuan-Yang.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Malaria Visualization</title>
+      <link>https://Mingxuan-Yang.github.io/posts/malaria-visualization/</link>
+      <pubDate>Wed, 23 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/malaria-visualization/</guid>
+      <description>Malaria is a fatal disease caused by infected mosquitoes. It has remained with human in a long history and is one of the biggest causes of death. Almost half of the world’s population, according to the World Health Organization (WHO), is at the risk of catching Malaria. To gain more comprehension about this powerful enemy, the Wellcome Trust and Sage Bionetworks have hosted a Data Challenge based on the relevant Malaria datasets.</description>
+    </item>
     
     <item>
       <title>Euler Project Problem 85 using Python</title>
