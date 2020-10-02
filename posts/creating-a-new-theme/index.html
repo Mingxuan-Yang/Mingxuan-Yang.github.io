@@ -105,14 +105,6 @@
 		 
 			 
 				<li>
-					<a href="/portfolio/">
-						<span>Portfolio</span>
-					</a>
-				</li>
-			 
-		 
-			 
-				<li>
 					<a href="/about/">
 						<span>About</span>
 					</a>
@@ -151,17 +143,6 @@
       </div>
     </div>
     
-<div class="copyright">
-  &copy; 2019 - 2020 htr3n
-  
-    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
-  
-</div>
-
-
-<div class="builtwith">
-Built with <a href="https://gohugo.io">Hugo</a> ❤️ <a href="https://github.com/htr3n/hyde-hyde">hyde-hyde</a>.
-</div>
 
 
   </div>
@@ -298,7 +279,7 @@ Serving pages from memory
 Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
 Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
 Press Ctrl+C to stop
-</code></pre><p>According to the instructions, we can go to <em>http://localhost:1313/</em> through our web browser and our personal website will appear. Based on the result, we can also make some customized changes to the folders as well as <code> config.toml</code>. These changes are expected to appear at <em>http://localhost:1313/</em> immediately. When we finish testing, just press Ctrl+C to exit.</p>
+</code></pre><p>According to the instructions, we can go to <code>http://localhost:1313/</code> through our web browser and our personal website will appear. Based on the result, we can also make some customized changes to the folders as well as <code>config.toml</code>. These changes are expected to appear at <code>http://localhost:1313/</code> immediately. When we finish testing, just press Ctrl+C to exit.</p>
 <h2 id="step-6-host-on-github-pages">Step 6: Host on Github Pages</h2>
 <p>To host my website on Github Pages, I need to firstly create a new github repository.</p>
 <p>The process of creating Github repository can be shown below.</p>
@@ -307,17 +288,17 @@ Press Ctrl+C to stop
 <li>Click on the <strong>New</strong> button to create a new repository.</li>
 <li>Fill the <strong>Repository name</strong> space according to the baseurl in <code>config.toml</code>.</li>
 </ol>
-<p>For the third procedure, for example, my baseurl in <code>config.toml</code> is <em><a href="https://Mingxuan-Yang.github.io">https://Mingxuan-Yang.github.io</a></em>, then I will fill the <strong>Repository name</strong> space with <em>Mingxuan-Yang.github.io</em>.</p>
-<p>Once we have created a Github repository, there will be a link started with https, which in my example is <em><a href="https://github.com/Mingxuan-Yang/Mingxuan-Yang.github.io.git">https://github.com/Mingxuan-Yang/Mingxuan-Yang.github.io.git</a></em>. Copy this link and we can turn to deploy our personal website to the Github Pages.</p>
+<p>For the third procedure, if the baseurl in <code>config.toml</code> is <code>https://user-name.github.io/</code>, then we should fill the <strong>Repository name</strong> space with <code>user-name.github.io</code>.</p>
+<p>Once we have created a Github repository, there will be a link started with https and looks like <code>https://github.com/user-name/user-name.github.io.git</code>. Copy this link and we can turn to deploy our personal website to the Github Pages.</p>
 <p>In the Terminal, run the following code:</p>
 <pre><code>hugo
 cd public
 git init
 git add .
-git remote add origin https://github.com/Mingxuan-Yang/Mingxuan-Yang.github.io.git
+git remote add origin https://github.com/user-name/user-name.github.io.git
 git commit -m “first commit”
 git push origin master
-</code></pre><p>We are almost done! After successfully committed, we can go to the repository, which in this case is <em>Mingxuan-Yang.github.io</em>, and get into the <strong>Settings</strong> page. At the <strong>Github Pages</strong> section, we can find the link to our new website.</p>
+</code></pre><p>We are almost done! After successfully committed, we can go to the repository and get into the <strong>Settings</strong> page. At the <strong>Github Pages</strong> section, we can find the link to our new website.</p>
 <h2 id="step-7-update-website">Step 7: Update website</h2>
 <p>If you&rsquo;d like to make some changes to the contents on your website, which is highly possible to happen, you can directly make changes in the website directory and then run the following code.</p>
 <pre><code>git add .
