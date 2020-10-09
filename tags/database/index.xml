@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>database on Mingxuan Yang</title>
+    <link>https://Mingxuan-Yang.github.io/tags/database/</link>
+    <description>Recent content in database on Mingxuan Yang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a SQLite3 Schema Using Spotify Dataset</title>
+      <link>https://Mingxuan-Yang.github.io/posts/spotify-songs/</link>
+      <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/spotify-songs/</guid>
+      <description>Introduction This blog is to create a SQLite3 schema to store Spotify Songs Dataset. This schema should follow the normalization rule to reduce data redundancy and prevent inconsistencies on insertion, update and deletion. Normalization design technique divides large tables into smaller pieces and uses some relationships to connect them. There are many database normal forms, they can be listed from least normalized to most normalized as below:
+ UNF: Unnormalized form 1NF: First normal form 2NF: Second normal form 3NF: Third normal form EKNF: Elementary key normal form BCNF: Boyce-Codd normal form 4NF: Fourth normal form ETNF: Essential tuple normal form 5NF: Fifth normal form DKNF: Domain-key normal form 6NF: Sixth normal form  The main normal forms applied in this blog are 1NF, 2NF and 3NF.</description>
+    </item>
+    
+  </channel>
+</rss>
