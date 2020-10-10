@@ -499,16 +499,16 @@ WHERE type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39
 </table>
 <h2 id="problem-solution">Problem Solution</h2>
 <p>In this section, we are going to explore the names of all playlists that contain instrumentals. The threshold of judging whether instrumentals are contained is given in the definition of variable <code>instrumentalness</code>. The <code>instrumentalness</code> with values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. To find the names of the playlists, which are stored in table <strong>playlist</strong>, the first step is to combine table <strong>feature</strong> and <strong>connection</strong> via <em>INNER JOIN</em> method on their common variable <code>track_id</code>. Then the next step is to combine the joint table with <strong>playlist</strong> on variable <code>playlist_id</code> using <em>INNER JOIN</em> as well. From the combination of three tables we can filter the rows with instrumentalness larger than 0.5 and compute the number of songs in each playlist. Since there are too many playlists that satisfy the condition, only the top 10 playlists are listed ordered by the number of songs within them.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%%</span>sql
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>sql
 
-SELECT playlist_name, COUNT(feature<span style="color:#f92672">.</span>track_id) AS <span style="color:#e6db74">&#39;Number of Songs&#39;</span>
+SELECT playlist_name AS <span style="color:#e6db74">&#39;playlist name&#39;</span>, COUNT(DISTINCT feature<span style="color:#f92672">.</span>track_id) AS <span style="color:#e6db74">&#39;Number of Songs&#39;</span>
 FROM feature INNER JOIN connection
 ON feature<span style="color:#f92672">.</span>track_id <span style="color:#f92672">=</span> connection<span style="color:#f92672">.</span>track_id
 INNER JOIN playlist
 ON connection<span style="color:#f92672">.</span>playlist_id <span style="color:#f92672">=</span> playlist<span style="color:#f92672">.</span>playlist_id
 WHERE instrumentalness <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>
 GROUP BY playlist_name
-ORDER BY COUNT(instrumentalness) DESC
+ORDER BY COUNT(DISTINCT feature<span style="color:#f92672">.</span>track_id) DESC
 LIMIT <span style="color:#ae81ff">10</span>
 </code></pre></div><p><img src="/img/spotify_result.png" alt="error"></p>
 <p>Therefore, among all of the playlists that include instrumentals, &ldquo;Lush Lofi&rdquo; has the largest number of songs. For audience fond of instruments, it might be an excellent choice. Besides, according to the following operation, the total number of playlists that are within our choice pool is 262 out of 471, indicating that playlists representing instrumental tracks in the Spotify dataset are a little bit more than playlists with more vocal content.</p>
