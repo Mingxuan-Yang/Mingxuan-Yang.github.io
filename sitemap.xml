@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://Mingxuan-Yang.github.io/posts/phd_dashboard/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://Mingxuan-Yang.github.io/posts/star_wars/</loc>
     <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
@@ -38,6 +43,56 @@
   </url>
   
   <url>
+    <loc>https://Mingxuan-Yang.github.io/categories/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/tags/dashboard/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/tags/doctorate/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/categories/plotly/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/tags/plotly/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/posts/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/categories/python/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/tags/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://Mingxuan-Yang.github.io/tags/visualization/</loc>
+    <lastmod>2020-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://Mingxuan-Yang.github.io/tags/api/</loc>
     <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
@@ -48,37 +103,12 @@
   </url>
   
   <url>
-    <loc>https://Mingxuan-Yang.github.io/categories/</loc>
-    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://Mingxuan-Yang.github.io/tags/database/</loc>
     <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://Mingxuan-Yang.github.io/tags/json/</loc>
-    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Mingxuan-Yang.github.io/</loc>
-    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Mingxuan-Yang.github.io/posts/</loc>
-    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Mingxuan-Yang.github.io/categories/python/</loc>
-    <lastmod>2020-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Mingxuan-Yang.github.io/tags/</loc>
     <lastmod>2020-10-17T00:00:00+00:00</lastmod>
   </url>
   
@@ -94,11 +124,6 @@
   
   <url>
     <loc>https://Mingxuan-Yang.github.io/tags/malaria/</loc>
-    <lastmod>2020-10-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://Mingxuan-Yang.github.io/tags/visualization/</loc>
     <lastmod>2020-10-01T00:00:00+00:00</lastmod>
   </url>
   

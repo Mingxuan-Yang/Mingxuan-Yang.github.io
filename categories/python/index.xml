@@ -6,7 +6,17 @@
     <description>Recent content in Python on Mingxuan Yang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 17 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dashboard for Doctorate Recipients in the United States</title>
+      <link>https://Mingxuan-Yang.github.io/posts/phd_dashboard/</link>
+      <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/posts/phd_dashboard/</guid>
+      <description>In this post, the main goal is to solve the following problems using plotly and dash visualization in Python. All of the doctorate degrees are pursued in the United States.
+ The number of doctorate-granting institutions and doctorate recipients over year. plot The distribution of educational resources by state in 2017. plot The debt level of doctorate recipients for each field of study over year. plot The proportion of sex and field of study for doctorate recipients over year.</description>
+    </item>
+    
     <item>
       <title>Data Extraction Using Star Wars API</title>
       <link>https://Mingxuan-Yang.github.io/posts/star_wars/</link>
