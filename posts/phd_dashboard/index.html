@@ -198,7 +198,7 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 1 min read
+    <i class="fas fa-clock"></i> 9 min read
 </div>
 
 
@@ -206,15 +206,345 @@
   
   
   <div class="post">
-    <p>In this post, the main goal is to solve the following problems using <code>plotly</code> and <code>dash</code> visualization in Python. All of the doctorate degrees are pursued in the United States.</p>
+    <h2 id="introduction">Introduction</h2>
+<p>A doctorate is an advanced academic degree awarded by universities that demonstrates the recipient&rsquo;s mastery in a certain field of study. From the perspective of institutions, the number of doctorate recipients, to some extent, can be viewed an indicator to measure its research ability. From the aspect of researchers, a doctor&rsquo;s degree, though can take years and even educational debt to pursue, can qualify him/her to teach in a university in most countries.</p>
+<p>In this post, the main goal is to solve the following problems about doctorates using <code>plotly</code> and <code>dash</code> visualization in Python. All of the doctorates in the problems were pursued in the United States.</p>
 <ul>
-<li>The number of doctorate-granting institutions and doctorate recipients over year. <a href="https://chart-studio.plotly.com/~Mingxuan-Yang/6/#/">plot</a></li>
-<li>The distribution of educational resources by state in 2017. <a href="https://doctorate-distribution.herokuapp.com/">plot</a></li>
-<li>The debt level of doctorate recipients for each field of study over year. <a href="https://doctorate-characteristic.herokuapp.com/">plot</a></li>
-<li>The proportion of sex and field of study for doctorate recipients over year. <a href="https://doctorate-characteristic.herokuapp.com/">plot</a></li>
-<li>The median expected salary for doctorate recipients by employment sector. <a href="https://doctorate-salary.herokuapp.com/">plot</a></li>
+<li>The number of doctorate-granting institutions and doctorate recipients over time. <a href="https://chart-studio.plotly.com/~Mingxuan-Yang/6/#/">plot</a></li>
+<li>The distribution of educational resources by states in 2017. <a href="https://doctorate-distribution.herokuapp.com/">plot</a></li>
+<li>The debt level of doctorate recipients for each field of study over time. <a href="https://doctorate-characteristic-1.herokuapp.com/">plot</a></li>
+<li>The proportion of sex and field of study for doctorate recipients over time. <a href="https://doctorate-characteristic-1.herokuapp.com/">plot</a></li>
+<li>The median expected salary for doctorate recipients by employment sectors. <a href="https://doctorate-salary.herokuapp.com/">plot</a></li>
 </ul>
-<p>The dataset is <a href="https://ncses.nsf.gov/pubs/nsf19301/data">PhDs awarded in the US</a>. Since the third and fourth problems have the same range of years, they can share the time slider and be visualized into the same dashboard. The Python codes can be found at the <a href="https://github.com/Mingxuan-Yang/PhD-Dashboard">Github repository</a>.</p>
+<p>The dataset <a href="https://ncses.nsf.gov/pubs/nsf19301/data">PhDs awarded in the US</a> is applied. It contains 72 tables about the demographic characteristics, educational history, sources of financial support, and postgraduation plans of doctorate recipients. Only a small fraction of the tables will be used based on the problems.</p>
+<h2 id="the-number-of-doctorate-granting-institutions-and-doctorate-recipients">The Number of Doctorate-granting Institutions and Doctorate Recipients</h2>
+<p>This problem is about the advanced educational power over the years in the United States, where the educational power is denoted by the number of doctorate-granting institutions and doctorate recipients. The data used in this part is <strong>table 2</strong> of dataset <a href="https://ncses.nsf.gov/pubs/nsf19301/data">PhDs awarded in the US</a>, named as <em>Doctorate-granting institutions and doctorate recipients per institution: 1973–2017</em>. The data cleaning process is</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+
+df1 <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_excel(<span style="color:#e6db74">&#39;Data/sed17-sr-tab002.xlsx&#39;</span>)<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">4</span>:, :<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>reset_index(drop <span style="color:#f92672">=</span> True)
+df1<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Year&#39;</span>, <span style="color:#e6db74">&#39;No. of Institutions&#39;</span>, <span style="color:#e6db74">&#39;No. of Doctorates&#39;</span>]
+df1<span style="color:#f92672">.</span>head()
+</code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:center">Year</th>
+<th style="text-align:center">No. of Institutions</th>
+<th style="text-align:center">No. of Doctorates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1973</td>
+<td style="text-align:center">286</td>
+<td style="text-align:center">33755</td>
+</tr>
+<tr>
+<td style="text-align:center">1974</td>
+<td style="text-align:center">292</td>
+<td style="text-align:center">33047</td>
+</tr>
+<tr>
+<td style="text-align:center">1975</td>
+<td style="text-align:center">292</td>
+<td style="text-align:center">32952</td>
+</tr>
+<tr>
+<td style="text-align:center">1976</td>
+<td style="text-align:center">294</td>
+<td style="text-align:center">32946</td>
+</tr>
+<tr>
+<td style="text-align:center">1977</td>
+<td style="text-align:center">304</td>
+<td style="text-align:center">31716</td>
+</tr>
+</tbody>
+</table>
+<p>The visualization is implemented through <code>plotly</code>. The number of doctorate-granting institutions and the number of doctorate recipients are based on different y-axises.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> plotly.graph_objs <span style="color:#f92672">as</span> go
+<span style="color:#f92672">from</span> plotly.subplots <span style="color:#f92672">import</span> make_subplots
+
+fig <span style="color:#f92672">=</span> make_subplots(specs<span style="color:#f92672">=</span>[[{<span style="color:#e6db74">&#34;secondary_y&#34;</span>: True}]])
+fig<span style="color:#f92672">.</span>add_trace(go<span style="color:#f92672">.</span>Scatter(x <span style="color:#f92672">=</span> df1[<span style="color:#e6db74">&#39;Year&#39;</span>],
+                         y <span style="color:#f92672">=</span> df1[<span style="color:#e6db74">&#39;No. of Institutions&#39;</span>],
+                         marker <span style="color:#f92672">=</span> dict(color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#0099ff&#39;</span>),
+                         mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lines+markers&#39;</span>,
+                         name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Number of Institutions&#39;</span>),secondary_y <span style="color:#f92672">=</span> False)
+fig<span style="color:#f92672">.</span>add_trace(go<span style="color:#f92672">.</span>Scatter(x <span style="color:#f92672">=</span> df1[<span style="color:#e6db74">&#39;Year&#39;</span>],
+                         y <span style="color:#f92672">=</span> df1[<span style="color:#e6db74">&#39;No. of Doctorates&#39;</span>],
+                         marker <span style="color:#f92672">=</span> dict(color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;#404040&#39;</span>),
+                         mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lines+markers&#39;</span>,
+                         name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Number of Doctorates&#39;</span>), secondary_y <span style="color:#f92672">=</span> True)
+fig<span style="color:#f92672">.</span>update_layout(title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Doctorate-granting Institutions and Doctorate Recipients in the US&#39;</span>)
+fig<span style="color:#f92672">.</span>update_xaxes(title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Year&#39;</span>, gridcolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;whitesmoke&#39;</span>, linecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>)
+fig<span style="color:#f92672">.</span>update_yaxes(title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Number of Doctorate-granting Institutions&#39;</span>, secondary_y <span style="color:#f92672">=</span> False, 
+                 gridcolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;whitesmoke&#39;</span>, linecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>)
+fig<span style="color:#f92672">.</span>update_yaxes(title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Number of Doctorate Recipients&#39;</span>, secondary_y <span style="color:#f92672">=</span> True, 
+                 linecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>)
+fig<span style="color:#f92672">.</span>update_layout({<span style="color:#e6db74">&#39;plot_bgcolor&#39;</span>: <span style="color:#e6db74">&#39;rgb(255,255,255)&#39;</span>, <span style="color:#e6db74">&#39;paper_bgcolor&#39;</span>: <span style="color:#e6db74">&#39;rgb(255,255,255)&#39;</span>})
+fig<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="/img/figure1.gif" alt="error"></p>
+<p>From the above figure, we can see that the overall trend of the educational resources in the United States is increasing from 1973 to 2017. Nowadays, pursing a PhD degree is becoming a more general option. And the United States had more than 420 institutions eligible to confer doctor&rsquo;s degrees in 2017, which demonstrates its superiority in advanced educational system. Based on these information, the next question is that is there any educational disparity between states in the US?</p>
+<h2 id="the-distribution-of-educational-resources">The Distribution of Educational Resources</h2>
+<p>In this section, the state-level educational disparity in the United States will be explored. The dataset applied is <strong>table 6</strong> called <em>Doctorates awarded, by state or location, broad field of study, and sex of doctorate recipients: 2017</em>. And the data manipulation process is shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># import data</span>
+df2 <span style="color:#f92672">=</span> (
+    pd<span style="color:#f92672">.</span>read_excel(<span style="color:#e6db74">&#39;Data/sed17-sr-tab006.xlsx&#39;</span>)<span style="color:#f92672">.</span>
+    iloc[<span style="color:#ae81ff">5</span>:, :]<span style="color:#f92672">.</span>
+    reset_index(drop <span style="color:#f92672">=</span> True)<span style="color:#f92672">.</span>
+    replace({<span style="color:#e6db74">&#39;D&#39;</span>: None})<span style="color:#f92672">.</span>
+    rename(columns <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Table 6&#39;</span>: <span style="color:#e6db74">&#39;State&#39;</span>})
+)
+
+<span style="color:#75715e"># combine male and female columns</span>
+name <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Total&#39;</span>, <span style="color:#e6db74">&#39;Life Sciences&#39;</span>, <span style="color:#e6db74">&#39;Physical Sciences and Earth Sciences&#39;</span>, <span style="color:#e6db74">&#39;Mathematics and Computer Sciences&#39;</span>, 
+        <span style="color:#e6db74">&#39;Psychology and Social Sciences&#39;</span>, <span style="color:#e6db74">&#39;Engineering&#39;</span>, <span style="color:#e6db74">&#39;Education&#39;</span>, <span style="color:#e6db74">&#39;Humanities and Arts&#39;</span>, <span style="color:#e6db74">&#39;Other&#39;</span>]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">9</span>):
+    df2[name[i]] <span style="color:#f92672">=</span> df2<span style="color:#f92672">.</span>iloc[:, (i<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):(i<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>)]<span style="color:#f92672">.</span>sum(axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, skipna <span style="color:#f92672">=</span> False) 
+df2 <span style="color:#f92672">=</span> df2[[<span style="color:#e6db74">&#39;State&#39;</span>] <span style="color:#f92672">+</span> name]
+
+<span style="color:#75715e"># add state code</span>
+state_code <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv&#39;</span>)[[<span style="color:#e6db74">&#39;code&#39;</span>, <span style="color:#e6db74">&#39;state&#39;</span>]]
+df2 <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(state_code, df2, left_on <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;state&#39;</span>, right_on <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;State&#39;</span>)<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;state&#39;</span>, axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+df2<span style="color:#f92672">.</span>head()
+</code></pre></div><p><img src="/img/table2.png" alt="error"></p>
+<p>The visualization is through <code>dash</code> app. From the Dropdown menu, the educational resources for every field of study in each state can be obtained. The field of study includes <em>Total</em>, <em>Life Sciences</em>, <em>Physical Sciences and Earth Sciences</em>, <em>Mathematics and Computer Sciences</em>, <em>Psychology and Social Sciences</em>, <em>Engineering</em>, <em>Education</em>, <em>Humanities and Arts</em> and <em>Other</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> plotly.express <span style="color:#f92672">as</span> px
+<span style="color:#f92672">from</span> jupyter_dash <span style="color:#f92672">import</span> JupyterDash
+<span style="color:#f92672">import</span> dash_core_components <span style="color:#f92672">as</span> dcc
+<span style="color:#f92672">import</span> dash_html_components <span style="color:#f92672">as</span> html
+<span style="color:#f92672">from</span> dash.dependencies <span style="color:#f92672">import</span> Input, Output
+
+external_stylesheets <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span>]
+app <span style="color:#f92672">=</span> JupyterDash(__name__, external_stylesheets<span style="color:#f92672">=</span>external_stylesheets)
+
+app<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</span> html<span style="color:#f92672">.</span>Div([
+    
+    html<span style="color:#f92672">.</span>Label(<span style="color:#e6db74">&#39;Field of Study:&#39;</span>),
+    dcc<span style="color:#f92672">.</span>Dropdown(
+        id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Field of Study&#39;</span>,
+        options <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#39;label&#39;</span>: i, <span style="color:#e6db74">&#39;value&#39;</span>: i} <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> name],
+        value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Total&#39;</span>
+    ),
+    
+    dcc<span style="color:#f92672">.</span>Graph(id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fields-graphic&#39;</span>),
+],
+    style <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;width&#39;</span>: <span style="color:#e6db74">&#39;35%&#39;</span>})
+
+<span style="color:#a6e22e">@app.callback</span>(
+    Output(<span style="color:#e6db74">&#39;fields-graphic&#39;</span>, <span style="color:#e6db74">&#39;figure&#39;</span>),
+    [Input(<span style="color:#e6db74">&#39;Field of Study&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>)])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_graph</span>(field):
+
+    dff <span style="color:#f92672">=</span> df2[[<span style="color:#e6db74">&#39;code&#39;</span>, <span style="color:#e6db74">&#39;State&#39;</span>, field]]<span style="color:#f92672">.</span>dropna(axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+    
+    fig <span style="color:#f92672">=</span> go<span style="color:#f92672">.</span>Figure(data <span style="color:#f92672">=</span> go<span style="color:#f92672">.</span>Choropleth(
+        locations <span style="color:#f92672">=</span> dff[<span style="color:#e6db74">&#39;code&#39;</span>],
+        z <span style="color:#f92672">=</span> dff[field]<span style="color:#f92672">.</span>astype(float),
+        locationmode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;USA-states&#39;</span>,
+        colorscale <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Reds&#39;</span>,
+        autocolorscale <span style="color:#f92672">=</span> False,
+        marker_line_color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>,
+        text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;b&gt;&#39;</span> <span style="color:#f92672">+</span> dff[<span style="color:#e6db74">&#39;State&#39;</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&lt;/b&gt;&lt;br&gt;&#39;</span> <span style="color:#f92672">+</span> field <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; Field: &#39;</span> <span style="color:#f92672">+</span> dff[field]<span style="color:#f92672">.</span>astype(int)<span style="color:#f92672">.</span>astype(str)
+    ))
+    
+    fig<span style="color:#f92672">.</span>update_layout(
+        width <span style="color:#f92672">=</span> <span style="color:#ae81ff">900</span>, height <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>,
+        title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Number of Doctorate recipients in the US by State in 2017&#39;</span>, title_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>,
+        geo <span style="color:#f92672">=</span> dict(
+            scope <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;usa&#39;</span>,
+            projection <span style="color:#f92672">=</span> go<span style="color:#f92672">.</span>layout<span style="color:#f92672">.</span>geo<span style="color:#f92672">.</span>Projection(type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;albers usa&#39;</span>),
+            showlakes <span style="color:#f92672">=</span> True, lakecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rgb(255, 255, 255)&#39;</span>)
+    )
+    
+    <span style="color:#66d9ef">return</span> fig
+
+app<span style="color:#f92672">.</span>run_server(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inline&#39;</span>, debug <span style="color:#f92672">=</span> True)
+</code></pre></div><p><img src="/img/figure2.gif" alt="error"></p>
+<p>From the map plot, California, Texas, and New York seem to have conferred the largest number of doctorates. California is the king in amost every field of study, while Texas has the preference in <em>Education</em>, and New York does well in <em>Humanities and Arts</em> field.</p>
+<h2 id="the-debt-level-sex-proportion-and-field-of-study-of-doctorate-recipients">The Debt Level, Sex Proportion and Field of Study of Doctorate Recipients</h2>
+<p>In this part, the characteristics about debt level, sex proportion and field of studies of doctorate recipients over time are studied. According to <strong>table 15</strong> and <strong>table 39</strong>, the available information about these features is distributed within the same year range from 2008 to 2017, thus they can share the time slider and be visualized into the same dashboard. The two datasets are shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df3a_ <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_excel(<span style="color:#e6db74">&#39;Data/sed17-sr-tab039.xlsx&#39;</span>)<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">8</span>:, :]
+df3a <span style="color:#f92672">=</span> df3a_<span style="color:#f92672">.</span>iloc[<span style="color:#ae81ff">1</span>::<span style="color:#ae81ff">5</span>, :]
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>):
+    df3a <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([df3a, df3a_<span style="color:#f92672">.</span>iloc[i::<span style="color:#ae81ff">5</span>, :]])
+df3a<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Debt Level&#39;</span>] <span style="color:#f92672">+</span> [str(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2008</span>, <span style="color:#ae81ff">2018</span>)]
+df3a[<span style="color:#e6db74">&#39;Field of Study&#39;</span>] <span style="color:#f92672">=</span> name[<span style="color:#ae81ff">1</span>:] <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>
+df3a <span style="color:#f92672">=</span> df3a<span style="color:#f92672">.</span>reset_index(drop <span style="color:#f92672">=</span> True)<span style="color:#f92672">.</span>replace({<span style="color:#e6db74">&#39;$10,001–$30,000&#39;</span>: <span style="color:#e6db74">&#39;$10,001 - 30,000&#39;</span>})
+df3a<span style="color:#f92672">.</span>head()
+</code></pre></div><p><img src="/img/table3a.png" alt="error"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">colors <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;#FEFFFE&#39;</span>, <span style="color:#e6db74">&#39;#E9EBF8&#39;</span>, <span style="color:#e6db74">&#39;#B4B8C5&#39;</span>, <span style="color:#e6db74">&#39;#A5A299&#39;</span>, <span style="color:#e6db74">&#39;#8D818C&#39;</span>, <span style="color:#e6db74">&#39;#3C4F76&#39;</span>, <span style="color:#e6db74">&#39;#383F51&#39;</span>, <span style="color:#e6db74">&#39;#2E6171&#39;</span>, <span style="color:#e6db74">&#39;#7F557D&#39;</span>]
+df3b <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_excel(<span style="color:#e6db74">&#39;Data/sed17-sr-tab015.xlsx&#39;</span>)<span style="color:#f92672">.</span>iloc[[<span style="color:#ae81ff">49</span>, <span style="color:#ae81ff">53</span>, <span style="color:#ae81ff">57</span>, <span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">67</span>, <span style="color:#ae81ff">77</span>, <span style="color:#ae81ff">83</span>, <span style="color:#ae81ff">88</span>, <span style="color:#ae81ff">94</span>,<span style="color:#ae81ff">98</span>, <span style="color:#ae81ff">102</span>, <span style="color:#ae81ff">105</span>, <span style="color:#ae81ff">112</span>, <span style="color:#ae81ff">122</span>, <span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">133</span>], <span style="color:#ae81ff">1</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>reset_index(drop <span style="color:#f92672">=</span> True)
+df3b<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [str(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2008</span>, <span style="color:#ae81ff">2018</span>)]
+df3b[<span style="color:#e6db74">&#39;Field of Study&#39;</span>] <span style="color:#f92672">=</span> name[<span style="color:#ae81ff">1</span>:]<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>
+df3b[<span style="color:#e6db74">&#39;Sex&#39;</span>] <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Male&#39;</span>]<span style="color:#f92672">*</span>len(name[<span style="color:#ae81ff">1</span>:]) <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;Female&#39;</span>]<span style="color:#f92672">*</span>len(name[<span style="color:#ae81ff">1</span>:])
+df3b<span style="color:#f92672">.</span>head()
+</code></pre></div><p><img src="/img/table3b.png" alt="error"></p>
+<p>The visualization is also based on <code>dash</code> app. But in this case, the app contains two subplots.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">external_stylesheets <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span>]
+app <span style="color:#f92672">=</span> JupyterDash(__name__, external_stylesheets<span style="color:#f92672">=</span>external_stylesheets)
+
+app<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</span> html<span style="color:#f92672">.</span>Div([
+    html<span style="color:#f92672">.</span>Div([
+        html<span style="color:#f92672">.</span>Div([
+            dcc<span style="color:#f92672">.</span>Graph(id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;bar_plot&#39;</span>)
+        ], style<span style="color:#f92672">=</span>{ <span style="color:#e6db74">&#39;width&#39;</span>: <span style="color:#e6db74">&#39;55%&#39;</span>, <span style="color:#e6db74">&#39;display&#39;</span>: <span style="color:#e6db74">&#39;inline-block&#39;</span>, <span style="color:#e6db74">&#39;padding&#39;</span>: <span style="color:#e6db74">&#39;0 20&#39;</span>}),
+
+        html<span style="color:#f92672">.</span>Div([
+            dcc<span style="color:#f92672">.</span>Graph(id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sunburst&#39;</span>)
+        ], style<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;width&#39;</span>: <span style="color:#e6db74">&#39;45%&#39;</span>, <span style="color:#e6db74">&#39;display&#39;</span>: <span style="color:#e6db74">&#39;inline-block&#39;</span>, <span style="color:#e6db74">&#39;vertical-align&#39;</span>: <span style="color:#e6db74">&#39;top&#39;</span>})
+    ], className <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;row&#39;</span>),
+    
+    html<span style="color:#f92672">.</span>Div([
+        dcc<span style="color:#f92672">.</span>Slider(
+            id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;year&#39;</span>,
+            min <span style="color:#f92672">=</span> <span style="color:#ae81ff">2008</span>,
+            max <span style="color:#f92672">=</span> <span style="color:#ae81ff">2017</span>,
+            value <span style="color:#f92672">=</span> <span style="color:#ae81ff">2008</span>,
+            marks <span style="color:#f92672">=</span> {str(year): str(year) <span style="color:#66d9ef">for</span> year <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2008</span>, <span style="color:#ae81ff">2018</span>)},
+            step <span style="color:#f92672">=</span> None
+    )
+    ])
+])
+
+<span style="color:#a6e22e">@app.callback</span>(
+    Output(<span style="color:#e6db74">&#39;bar_plot&#39;</span>, <span style="color:#e6db74">&#39;figure&#39;</span>),
+    [Input(<span style="color:#e6db74">&#39;year&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>)
+    ])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_graph</span>(year):
+    
+    ddf <span style="color:#f92672">=</span> df3a[[<span style="color:#e6db74">&#39;Debt Level&#39;</span>, str(year), <span style="color:#e6db74">&#39;Field of Study&#39;</span>]]
+    ddf <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>merge(ddf, ddf<span style="color:#f92672">.</span>groupby(<span style="color:#e6db74">&#39;Field of Study&#39;</span>)<span style="color:#f92672">.</span>agg(np<span style="color:#f92672">.</span>sum)<span style="color:#f92672">.</span>reset_index(), on <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Field of Study&#39;</span>)
+    ddf[str(year)] <span style="color:#f92672">=</span> round(ddf[str(year) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_x&#39;</span>]<span style="color:#f92672">/</span>ddf[str(year) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_y&#39;</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">2</span>)
+    fig <span style="color:#f92672">=</span> px<span style="color:#f92672">.</span>bar(ddf[[<span style="color:#e6db74">&#39;Debt Level&#39;</span>, str(year), <span style="color:#e6db74">&#39;Field of Study&#39;</span>]],
+                 x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Field of Study&#39;</span>, 
+                 y <span style="color:#f92672">=</span> str(year), 
+                 color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Debt Level&#34;</span>, 
+                 title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Debt Level for Each Field of Study&#39;</span>,
+                 template <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;plotly_white&#39;</span>,
+                 color_discrete_map <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;No debt&#39;</span>:<span style="color:#e6db74">&#39;#D4AFB9&#39;</span>, <span style="color:#e6db74">&#39;$10,000 or less&#39;</span>:<span style="color:#e6db74">&#39;#D1CFE2&#39;</span>, <span style="color:#e6db74">&#39;$10,001 - 30,000&#39;</span>:<span style="color:#e6db74">&#39;#9CADCE&#39;</span>, <span style="color:#e6db74">&#39;$30,001 or more&#39;</span>: <span style="color:#e6db74">&#39;#837A75&#39;</span>}
+                )
+    fig<span style="color:#f92672">.</span>update_layout(title_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.7</span>)
+    fig<span style="color:#f92672">.</span>update_yaxes(title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Percentage of Debt Level in &#34;</span> <span style="color:#f92672">+</span> str(year))
+    fig<span style="color:#f92672">.</span>update_xaxes(title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>)
+
+    <span style="color:#66d9ef">return</span> fig
+
+<span style="color:#a6e22e">@app.callback</span>(
+    Output(<span style="color:#e6db74">&#39;sunburst&#39;</span>, <span style="color:#e6db74">&#39;figure&#39;</span>),
+    [Input(<span style="color:#e6db74">&#39;year&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>)
+    ])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_sex_prop</span>(year):
+    
+    fig <span style="color:#f92672">=</span> px<span style="color:#f92672">.</span>sunburst(df3b, path <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Sex&#39;</span>, <span style="color:#e6db74">&#39;Field of Study&#39;</span>], values <span style="color:#f92672">=</span> str(year), color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Field of Study&#39;</span>,
+                      color_discrete_map <span style="color:#f92672">=</span> dict(zip(name[<span style="color:#ae81ff">1</span>:] <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;(?)&#39;</span>], colors)), 
+                      title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Propertion of Sex and Major Field&#39;</span>)
+    fig<span style="color:#f92672">.</span>update_layout(title_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+    
+    <span style="color:#66d9ef">return</span> fig
+
+app<span style="color:#f92672">.</span>run_server(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inline&#39;</span>, debug <span style="color:#f92672">=</span> True)
+</code></pre></div><p><img src="/img/figure3.gif" alt="error"></p>
+<p>From this plot, we can make the following conclusions:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Science,_technology,_engineering,_and_mathematics">STEM</a> disciplines have lighter debt burden compared with other disciplines.</li>
+<li>Female doctors is fewer than male doctors.</li>
+<li>Female doctors have fewer degrees in STEM majors than male doctors.</li>
+<li>Male doctors have fewer degrees in non-STEM majors than female doctors.</li>
+</ul>
+<h2 id="the-expected-salary-for-doctorate-recipients">The Expected Salary for Doctorate Recipients</h2>
+<p>The doctorate-pursuing process requires years of effort and potential education-related debt, so what is the financial reward for different 	postgraduation plans after these inputs? This problem can be solved based on the median expected basic annual salary for doctorate recipients in the United States, the data of which is stored in <strong>table 49</strong>. The data cleaning is conducted below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df4 <span style="color:#f92672">=</span> (
+  pd<span style="color:#f92672">.</span>read_excel(<span style="color:#e6db74">&#39;Data/sed17-sr-tab049.xlsx&#39;</span>)<span style="color:#f92672">.</span>
+  iloc[[<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">13</span>,<span style="color:#ae81ff">14</span>,<span style="color:#ae81ff">18</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">21</span>,<span style="color:#ae81ff">22</span>,<span style="color:#ae81ff">23</span>], :]<span style="color:#f92672">.</span>
+  reset_index(drop <span style="color:#f92672">=</span> True)
+)
+df4<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Field of Study&#39;</span>, <span style="color:#e6db74">&#39;Academe&#39;</span>, <span style="color:#e6db74">&#39;Industry or Business&#39;</span>, <span style="color:#e6db74">&#39;Government&#39;</span>, <span style="color:#e6db74">&#39;Nonprofit Organization&#39;</span>, <span style="color:#e6db74">&#39;Other or Unknown&#39;</span>]
+df4 <span style="color:#f92672">=</span> df4<span style="color:#f92672">.</span>replace({<span style="color:#e6db74">&#39;Other non-S&amp;E fieldsd&#39;</span>: <span style="color:#e6db74">&#39;Other&#39;</span>})<span style="color:#f92672">.</span>melt(id_vars <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Field of Study&#39;</span>, var_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Employment Sector&#39;</span>, value_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Median Expected Salary&#39;</span>)
+df4<span style="color:#f92672">.</span>head()
+</code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:center">Field of Study</th>
+<th style="text-align:center">Employment Sector</th>
+<th style="text-align:center">Median Expected Salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Life sciences</td>
+<td style="text-align:center">Academe</td>
+<td style="text-align:center">65000</td>
+</tr>
+<tr>
+<td style="text-align:center">Physical sciences and earth sciences</td>
+<td style="text-align:center">Academe</td>
+<td style="text-align:center">52000</td>
+</tr>
+<tr>
+<td style="text-align:center">Mathematics and computer sciences</td>
+<td style="text-align:center">Academe</td>
+<td style="text-align:center">70000</td>
+</tr>
+<tr>
+<td style="text-align:center">Psychology and social sciences</td>
+<td style="text-align:center">Academe</td>
+<td style="text-align:center">63000</td>
+</tr>
+<tr>
+<td style="text-align:center">Engineering</td>
+<td style="text-align:center">Academe</td>
+<td style="text-align:center">79000</td>
+</tr>
+</tbody>
+</table>
+<p>The interactive scatter plot with a checklist menu is visualized through <code>dash</code> app as well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">external_stylesheets <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span>]
+app <span style="color:#f92672">=</span> JupyterDash(__name__, external_stylesheets<span style="color:#f92672">=</span>external_stylesheets)
+
+sectors <span style="color:#f92672">=</span> df4[<span style="color:#e6db74">&#39;Employment Sector&#39;</span>]<span style="color:#f92672">.</span>unique()
+app<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</span> html<span style="color:#f92672">.</span>Div([
+    
+    html<span style="color:#f92672">.</span>Label(<span style="color:#e6db74">&#39;Employment Sectors:&#39;</span>),
+    dcc<span style="color:#f92672">.</span>Checklist(
+        id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Employment Sector&#39;</span>,
+        options <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#39;label&#39;</span>: i, <span style="color:#e6db74">&#39;value&#39;</span>: i} <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> sectors],
+        value <span style="color:#f92672">=</span> sectors,
+        labelStyle <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;display&#39;</span>: <span style="color:#e6db74">&#39;inline-block&#39;</span>},
+        className<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;my_box_container&#39;</span>,
+        inputClassName<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;my_box_input&#39;</span>,
+        labelClassName<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;my_box_label&#39;</span>
+    ),
+    
+    dcc<span style="color:#f92672">.</span>Graph(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fields-graphic&#39;</span>),
+])
+
+<span style="color:#a6e22e">@app.callback</span>(
+    Output(<span style="color:#e6db74">&#39;fields-graphic&#39;</span>, <span style="color:#e6db74">&#39;figure&#39;</span>),
+    [Input(<span style="color:#e6db74">&#39;Employment Sector&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>)])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">update_graph</span>(sector):
+
+    dff <span style="color:#f92672">=</span> df4[df4[<span style="color:#e6db74">&#39;Employment Sector&#39;</span>]<span style="color:#f92672">.</span>isin(sector)]
+    
+    fig <span style="color:#f92672">=</span> px<span style="color:#f92672">.</span>scatter(
+        data_frame <span style="color:#f92672">=</span> dff,
+        x <span style="color:#f92672">=</span> dff[<span style="color:#e6db74">&#39;Field of Study&#39;</span>],
+        y <span style="color:#f92672">=</span> dff[<span style="color:#e6db74">&#39;Median Expected Salary&#39;</span>],
+        color <span style="color:#f92672">=</span> dff[<span style="color:#e6db74">&#39;Employment Sector&#39;</span>],
+        template <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;plotly_white&#39;</span>
+    )
+    
+    fig<span style="color:#f92672">.</span>update_yaxes(linecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>)
+    fig<span style="color:#f92672">.</span>update_xaxes(linecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>)
+    fig<span style="color:#f92672">.</span>update_layout(width <span style="color:#f92672">=</span> <span style="color:#ae81ff">900</span>, height <span style="color:#f92672">=</span> <span style="color:#ae81ff">550</span>, title_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Median Expected Salary for Doctorate Recipients in the US&#39;</span>, 
+                      title_x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+    
+    <span style="color:#66d9ef">return</span> fig
+
+app<span style="color:#f92672">.</span>run_server(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inline&#39;</span>, debug <span style="color:#f92672">=</span> True)
+</code></pre></div><p><img src="/img/figure4.gif" alt="error"></p>
+<p>From this figure, we can learn that for most of the fields, <em>Industry or Business</em> sector has the highest expected salary and <em>Academe</em> has the lowest expected salary compared with other known employment sectors. However, in <em>Humanities and arts</em> and <em>Business management and administration</em> fields, things are different. For <em>Humanities and arts</em>, <em>Government</em> sector has the highest expected salary, while <em>Nonprofit Organization</em> sector has the lowest. Besides, for <em>Business management and administration</em> field, <em>Academe</em> ranks second in terms of expected salary, while <em>Government</em> sector has the lowest expected salary in all known sectors.</p>
 
   </div>
   
