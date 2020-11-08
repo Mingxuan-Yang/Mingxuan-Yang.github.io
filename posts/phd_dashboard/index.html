@@ -210,11 +210,11 @@
 <p>A doctorate is an advanced academic degree awarded by universities that demonstrates the recipient&rsquo;s mastery in a certain field of study. From the perspective of institutions, the number of doctorate recipients, to some extent, can be viewed an indicator to measure its research ability. From the aspect of researchers, a doctor&rsquo;s degree, though can take years and even educational debt to pursue, can qualify him/her to teach in a university in most countries.</p>
 <p>In this post, the main goal is to solve the following problems about doctorates using <code>plotly</code> and <code>dash</code> visualization in Python. All of the doctorates in the problems were pursued in the United States.</p>
 <ul>
-<li>The number of doctorate-granting institutions and doctorate recipients over time. <a href="https://chart-studio.plotly.com/~Mingxuan-Yang/6/#/">plot</a></li>
-<li>The distribution of educational resources by states in 2017. <a href="https://doctorate-distribution.herokuapp.com/">plot</a></li>
-<li>The debt level of doctorate recipients for each field of study over time. <a href="https://doctorate-characteristic-1.herokuapp.com/">plot</a></li>
-<li>The proportion of sex and field of study for doctorate recipients over time. <a href="https://doctorate-characteristic-1.herokuapp.com/">plot</a></li>
-<li>The median expected salary for doctorate recipients by employment sectors. <a href="https://doctorate-salary.herokuapp.com/">plot</a></li>
+<li>The number of doctorate-granting institutions and doctorate recipients over time.</li>
+<li>The distribution of educational resources by states in 2017.</li>
+<li>The debt level of doctorate recipients for each field of study over time.</li>
+<li>The proportion of sex and field of study for doctorate recipients over time.</li>
+<li>The median expected salary for doctorate recipients by employment sectors.</li>
 </ul>
 <p>The dataset <a href="https://ncses.nsf.gov/pubs/nsf19301/data">PhDs awarded in the US</a> is applied. It contains 72 tables about the demographic characteristics, educational history, sources of financial support, and postgraduation plans of doctorate recipients. Only a small fraction of the tables will be used based on the problems.</p>
 <h2 id="the-number-of-doctorate-granting-institutions-and-doctorate-recipients">The Number of Doctorate-granting Institutions and Doctorate Recipients</h2>
@@ -284,7 +284,8 @@ fig<span style="color:#f92672">.</span>update_yaxes(title_text <span style="colo
                  linecolor <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>)
 fig<span style="color:#f92672">.</span>update_layout({<span style="color:#e6db74">&#39;plot_bgcolor&#39;</span>: <span style="color:#e6db74">&#39;rgb(255,255,255)&#39;</span>, <span style="color:#e6db74">&#39;paper_bgcolor&#39;</span>: <span style="color:#e6db74">&#39;rgb(255,255,255)&#39;</span>})
 fig<span style="color:#f92672">.</span>show()
-</code></pre></div><p><img src="/img/figure1.gif" alt="error"></p>
+</code></pre></div><iframe width="720" height="500" frameborder="0" scrolling="no" src="//plotly.com/~Mingxuan-Yang/6.embed"></iframe>
+
 <p>From the above figure, we can see that the overall trend of the educational resources in the United States is increasing from 1973 to 2017. Nowadays, pursing a PhD degree is becoming a more general option. And the United States had more than 420 institutions eligible to confer doctor&rsquo;s degrees in 2017, which demonstrates its superiority in advanced educational system. Based on these information, the next question is that is there any educational disparity between states in the US?</p>
 <h2 id="the-distribution-of-educational-resources">The Distribution of Educational Resources</h2>
 <p>In this section, the state-level educational disparity in the United States will be explored. The dataset applied is <strong>table 6</strong> called <em>Doctorates awarded, by state or location, broad field of study, and sex of doctorate recipients: 2017</em>. And the data manipulation process is shown below.</p>
@@ -361,7 +362,7 @@ app<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</spa
     <span style="color:#66d9ef">return</span> fig
 
 app<span style="color:#f92672">.</span>run_server(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inline&#39;</span>, debug <span style="color:#f92672">=</span> True)
-</code></pre></div><p><img src="/img/figure2.gif" alt="error"></p>
+</code></pre></div><iframe width="720" height="500" frameborder="0" scrolling="no" src="https://doctorate-distribution.herokuapp.com/"></iframe>
 <p>From the map plot, California, Texas, and New York seem to have conferred the largest number of doctorates. California is the king in amost every field of study, while Texas has the preference in <em>Education</em>, and New York does well in <em>Humanities and Arts</em> field.</p>
 <h2 id="the-debt-level-sex-proportion-and-field-of-study-of-doctorate-recipients">The Debt Level, Sex Proportion and Field of Study of Doctorate Recipients</h2>
 <p>In this part, the characteristics about debt level, sex proportion and field of studies of doctorate recipients over time are studied. According to <strong>table 15</strong> and <strong>table 39</strong>, the available information about these features is distributed within the same year range from 2008 to 2017, thus they can share the time slider and be visualized into the same dashboard. The two datasets are shown below.</p>
@@ -445,7 +446,8 @@ app<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</spa
     <span style="color:#66d9ef">return</span> fig
 
 app<span style="color:#f92672">.</span>run_server(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inline&#39;</span>, debug <span style="color:#f92672">=</span> True)
-</code></pre></div><p><img src="/img/figure3.gif" alt="error"></p>
+</code></pre></div><iframe width="720" height="430" frameborder="0" scrolling="no" src="https://doctorate-characteristic.herokuapp.com/"></iframe>
+<p>Due to the space limitation of Hugo blog, this figure might be too small to obtain information. The larger view can be accessed <a href="https://doctorate-characteristic-1.herokuapp.com/">here</a>.</p>
 <p>From this plot, we can make the following conclusions:</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Science,_technology,_engineering,_and_mathematics">STEM</a> disciplines have lighter debt burden compared with other disciplines.</li>
@@ -543,7 +545,7 @@ app<span style="color:#f92672">.</span>layout <span style="color:#f92672">=</spa
     <span style="color:#66d9ef">return</span> fig
 
 app<span style="color:#f92672">.</span>run_server(mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;inline&#39;</span>, debug <span style="color:#f92672">=</span> True)
-</code></pre></div><p><img src="/img/figure4.gif" alt="error"></p>
+</code></pre></div><iframe width="720" height="550" frameborder="0" scrolling="no" src="https://doctorate-salary.herokuapp.com/"></iframe>
 <p>From this figure, we can learn that for most of the fields, <em>Industry or Business</em> sector has the highest expected salary and <em>Academe</em> has the lowest expected salary compared with other known employment sectors. However, in <em>Humanities and arts</em> and <em>Business management and administration</em> fields, things are different. For <em>Humanities and arts</em>, <em>Government</em> sector has the highest expected salary, while <em>Nonprofit Organization</em> sector has the lowest. Besides, for <em>Business management and administration</em> field, <em>Academe</em> ranks second in terms of expected salary, while <em>Government</em> sector has the lowest expected salary in all known sectors.</p>
 
   </div>
