@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.76.2" />
+
+    
+    
+    
+
+<title>Insect Image Classification Using CNN • Mingxuan Yang</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Insect Image Classification Using CNN"/>
+<meta name="twitter:description" content="This blog is to understand the Python implementation of Convolutional Neural Network (CNN) through the insect classification example."/>
+
+<meta property="og:title" content="Insect Image Classification Using CNN" />
+<meta property="og:description" content="This blog is to understand the Python implementation of Convolutional Neural Network (CNN) through the insect classification example." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Mingxuan-Yang.github.io/posts/insect_classification/" />
+<meta property="article:published_time" content="2020-11-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-13T00:00:00+00:00" /><meta property="og:site_name" content="website" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.71157e768c4e111a23c3531b95e0cbb59bbef3c9e6901d36247cb53d6b6be258.css" integrity="sha256-cRV&#43;doxOERojw1MbleDLtZu&#43;88nmkB02JHy1PWtr4lg=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://Mingxuan-Yang.github.io/">Mingxuan Yang</a>
+      </span>
+      
+        
+        
+        
+        <div class="author-image">
+          <img src="https://Mingxuan-Yang.github.io/img/photo.png" alt="Author Image" class="img--circle img--headshot element--center">
+        </div>
+        
+      
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Mingxuan Yang</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/Mingxuan-Yang" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://linkedin.com/in/mingxuan-yang-9468391a1" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="mailto:mingxuan.yang@duke.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+</section>
+
+      </div>
+    </div>
+    
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Insect Image Classification Using CNN</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Nov 13, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/cnn">CNN</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/python">PYTHON</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/cnn">cnn</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/deep-learning">deep learning</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/classification">classification</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 7 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <h2 id="introduction">Introduction</h2>
+<p>This blog is to understand the Python implementation of Convolutional Neural Network (CNN) through the insect classification example. CNN is one of the most widely-used deep learning methods in the field of image and video recognition, recommender systems, image classification, natural language processing etc. In this blog, we are going to apply CNN via <code>tensorflow</code> library in Python to classify insect images from beetle, cockroache and dragonflie categories. The dataset applied in this post can be obtained <a href="https://www.dropbox.com/s/fn73sj2e6c9rhf6/insects.zip?dl=0">here</a>. And the Python coded can be found at my <a href="https://github.com/Mingxuan-Yang/Insect-Image-Classification">Github repository</a>.</p>
+<h2 id="data">Data</h2>
+<p>The original dataset is from <a href="https://www.insectimages.org/index.cfm">this website</a>. In this post, we only used a small fraction of them which contains beetle, cockroache and dragonflie images. Before the formal data manipulation, we can firstly gain an overview of the relevant information.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">import</span> matplotlib.image <span style="color:#f92672">as</span> mpimg
+<span style="color:#f92672">import</span> os
+<span style="color:#f92672">from</span> tensorflow.keras.preprocessing.image <span style="color:#f92672">import</span> ImageDataGenerator
+<span style="color:#f92672">import</span> tensorflow <span style="color:#f92672">as</span> tf
+
+labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;beetles&#39;</span>, <span style="color:#e6db74">&#39;cockroach&#39;</span>, <span style="color:#e6db74">&#39;dragonflies&#39;</span>]
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> labels:
+    path_train <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./insects/train/&#39;</span> <span style="color:#f92672">+</span> i
+    path_test <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./insects/test/&#39;</span> <span style="color:#f92672">+</span> i
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Number of {i} images in the training set:&#39;</span>, len(os<span style="color:#f92672">.</span>listdir(path_train)))
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Number of {i} images in the testing set:&#39;</span>, len(os<span style="color:#f92672">.</span>listdir(path_test)))
+</code></pre></div><p>Number of beetles images in the training set: 460<br>
+Number of beetles images in the testing set: 60<br>
+Number of cockroach images in the training set: 240<br>
+Number of cockroach images in the testing set: 60<br>
+Number of dragonflies images in the training set: 319<br>
+Number of dragonflies images in the testing set: 60</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, axs <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, figsize <span style="color:#f92672">=</span> (<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>))
+axs <span style="color:#f92672">=</span> axs<span style="color:#f92672">.</span>ravel()
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(labels)):
+    path_train <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./insects/train/&#39;</span> <span style="color:#f92672">+</span> labels[i]
+    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">3</span>):
+        np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(j)
+        axs[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j]<span style="color:#f92672">.</span>imshow(mpimg<span style="color:#f92672">.</span>imread(path_train <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>choice(os<span style="color:#f92672">.</span>listdir(path_train))))
+        axs[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;Off&#39;</span>)
+        axs[<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>i<span style="color:#f92672">+</span>j]<span style="color:#f92672">.</span>set_title(labels[i])
+</code></pre></div><p><img src="/img/insect.png" alt="error"></p>
+<p>Then the 1019 training images and 180 testing images can be imported from the corresponding folders through the in-built functions of <code>tensorflow</code>. The imported datasets are normalized to improve model performance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># normalize</span>
+train_datagen <span style="color:#f92672">=</span> ImageDataGenerator(rescale <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">255</span>)
+test_datagen <span style="color:#f92672">=</span> ImageDataGenerator(rescale <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span><span style="color:#ae81ff">255</span>)
+
+<span style="color:#75715e"># import data from directory</span>
+train_generator <span style="color:#f92672">=</span> train_datagen<span style="color:#f92672">.</span>flow_from_directory(<span style="color:#e6db74">&#39;./insects/train/&#39;</span>, 
+                                                    target_size <span style="color:#f92672">=</span> (<span style="color:#ae81ff">256</span>, <span style="color:#ae81ff">256</span>),
+                                                    batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>,
+                                                    class_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sparse&#39;</span>)
+test_generator <span style="color:#f92672">=</span> test_datagen<span style="color:#f92672">.</span>flow_from_directory(<span style="color:#e6db74">&#39;./insects/test/&#39;</span>, 
+                                                  target_size <span style="color:#f92672">=</span> (<span style="color:#ae81ff">256</span>, <span style="color:#ae81ff">256</span>),
+                                                  batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>,
+                                                  class_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sparse&#39;</span>)
+</code></pre></div><p>The resulted data has shape:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Data</th>
+<th style="text-align:center">Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>train_generator</code></td>
+<td style="text-align:center">(32, 256, 256, 3)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>test_generator</code></td>
+<td style="text-align:center">(32,)</td>
+</tr>
+</tbody>
+</table>
+<p>The values of shape means that the batch size of the training and testing data is 32, and each image is represented by a 256 x 256 x 3 matrix. 3-channel matrix means that the images are in RGB format, while each channel is indicated by 256 x 256 pixels.</p>
+<p>The two datasets <code>train_generator</code> and <code>test_generator</code> will be applied to train the CNN model and evaluate its performance based on classification accuracy.</p>
+<h2 id="cnn-model">CNN Model</h2>
+<p>The whole model is constructed through <code>tensorflow</code> library. The python implementation is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">model <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential([tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Conv2D(<span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">3</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>, padding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;same&#39;</span>, input_shape<span style="color:#f92672">=</span>(<span style="color:#ae81ff">256</span>,<span style="color:#ae81ff">256</span>,<span style="color:#ae81ff">3</span>)),
+                                    tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>MaxPool2D(),
+                                    tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Conv2D(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">3</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>, padding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;same&#39;</span>),
+                                    tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>MaxPool2D(),
+                                    tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Flatten(),
+                                    tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(<span style="color:#ae81ff">128</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>),
+                                    tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(<span style="color:#ae81ff">3</span>)])
+
+model<span style="color:#f92672">.</span>compile(optimizer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;adam&#39;</span>,
+              loss <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>losses<span style="color:#f92672">.</span>SparseCategoricalCrossentropy(from_logits<span style="color:#f92672">=</span>True),
+              metrics <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+
+history <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>fit(train_generator,
+                    epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>,
+                    validation_data <span style="color:#f92672">=</span> test_generator)
+</code></pre></div><p>The basic structure of the classifier is:</p>
+<p><img src="/img/CNN_structure.png" alt="error"></p>
+<h3 id="convolution-layer">Convolution Layer</h3>
+<p><code>Conv2D</code> is the convolution layer. Its main objective is to extract features from the imported images while preserving the relationship between pixels. To start with, let&rsquo;s analyze the machenism from the perspective of a single channel. In this case, the major objective can be realized by summarizing the information of the submatrix of images with the usage of filter, which is a small square matrix. The summarizing process is to multiply the filter matrix with the image submatrix, and it can visualized as below.</p>
+<p><img src="/img/filter.png" alt="error"></p>
+<p>With this procedure, a new problem appears: how will the submatrix of the image be determined? We know the submatrix should have the same size as the filter matrix based on the multiplication rule, but do we need to explore on every submatrix within the image matrix? These problems can be solved with the <code>stride</code> parameter. Stride is the number of pixels shifts over the input matrix. If the stride is 1, the filters will be moved by 1 pixel at a time. The moving process of a 3 x 3 filter when stride is 1 can be shown as:</p>
+<p><img src="/img/stride.gif" alt="error"></p>
+<p>Extending this machanism into the 3-channel image case, I specify my <code>Conv2D</code> layer with 16 filters with 3 x 3 size, and <code>keras</code>, counter-intuitively, configure each filter as 3 x 3 x 3. Thus each 3 x 3 x 3 cube in the image matrix will result in a singe value for each filter. Since the stride of this layer is 1 by default, with input size 256 x 256 x 3, the output shape is expected to be 254 x 254 x 16 based on previous analysis. However, the resulting shape is actually 256 x 256 x 16. This is because the parameter <code>padding</code> is set to be &lsquo;same&rsquo;. Therefore, the 3-dimensional hypercube will be surrounded with zeros and the output matrix will have the same size as the input matrix when stride is 1. If <code>padding</code> is set to be &lsquo;valid&rsquo;, the output shape will be extractly 254 x 254 x 16.</p>
+<p>As for the number of parameters in this layer, since there are 16 filters, each with 3 x 3 x 3 weights plus 1 weight for the bias, the total number of parameters will be (3 x 3 x 3 + 1) x 16 = 448.</p>
+<h3 id="pooling-layer">Pooling Layer</h3>
+<p><code>MaxPool2D</code> is the pooling layer to reduce the number of parameters when the image is too large. There are three types of pooling:</p>
+<ul>
+<li>Max Pooling</li>
+<li>Average Pooling</li>
+<li>Sum Pooling</li>
+</ul>
+<p>They represent the calculation method within each submatrix. For example, with 2 x 2 filters and stride 2, the max pooling and average pooling work like this:</p>
+<p><img src="/img/pooling.png" alt="error"></p>
+<p>In the situation of our <code>MaxPool2D</code> layer, the default pool size is 2 x 2 and the default stride is 2 for both dimensions. Since the input matrix is in shape 256 x 256 x 16, the output matrix shape of <code>MaxPool2D</code> layer is 128 x 128 x 16. And due to the fact that the calculation method is already known to be maximum value, there is no parameter in this step.</p>
+<p>The logic for the second round of convolution layer and pooling layer is the same.</p>
+<h3 id="flatten-and-fully-connected-layer">Flatten and Fully Connected Layer</h3>
+<p><code>Flatten</code> is the flatten layer, it is to transform the input 3-dimensional output matrix into a single column. Since the input matrix has shape 64 x 64 x 32, the length of the column is 64 x 64 x 32 = 131072, and no parameter is applied in this process.</p>
+<p>The final step is the fully connected layer <code>Dense</code>. The fully connected layer will combine all the features together and get the classification result based on certain activation functions.</p>
+<p><img src="/img/fully_connected_layer.png" alt="error"></p>
+<p>Since all neurons are connected together, suppose the numbers of neurons of the input layer and output layer are n1 and n2 respectively, the number of parameters will be (n1 x n2 + n2), where the second part is the intercept weights for each neurons. The number of neurons of the output layer is determined by the <code>units</code> parameter. Please note that the last fully connected layer in the classifier should have <code>units</code> equal to the number of categories of the classification problem. In this post, the <code>units</code> should be 3 for the last <code>Dense</code> layer.</p>
+<p>The whole process of CNN model can be visualized as:</p>
+<p><img src="/img/CNN_process.png" alt="error"></p>
+<p>To avoid over-fitting, a possible solution is to add a <code>Dropout</code> layer in the CNN model. However, since we only have 1019 training samples in this case, such layer is not necessary.</p>
+<h2 id="result">Result</h2>
+<p>The final training and testing accuracy can be visualized with the number of epoches. As is shown from the figure, after about 6 epoches, the training and testing accuracy will both reach 100%. Therefore, this is an excellent model in both the training accuracy as well as the generalization ability. Convolutional Neural Network has demonstrated its power in image classification!</p>
+<p><img src="/img/CNN_result.png" alt="error"></p>
+<h2 id="reference">Reference</h2>
+<p>[1] <a href="https://medium.com/@RaghavPrabhu/understanding-of-convolutional-neural-network-cnn-deep-learning-99760835f148">https://medium.com/@RaghavPrabhu/understanding-of-convolutional-neural-network-cnn-deep-learning-99760835f148</a><br>
+[2] <a href="https://towardsdatascience.com/10-minutes-to-building-a-cnn-binary-image-classifier-in-tensorflow-4e216b2034aa">https://towardsdatascience.com/10-minutes-to-building-a-cnn-binary-image-classifier-in-tensorflow-4e216b2034aa</a><br>
+[3] <a href="https://heartbeat.fritz.ai/a-beginners-guide-to-convolutional-neural-networks-cnn-cf26c5ee17ed">https://heartbeat.fritz.ai/a-beginners-guide-to-convolutional-neural-networks-cnn-cf26c5ee17ed</a><br>
+[4] <a href="https://towardsdatascience.com/simple-introduction-to-convolutional-neural-networks-cdf8d3077bac">https://towardsdatascience.com/simple-introduction-to-convolutional-neural-networks-cdf8d3077bac</a><br>
+[5] <a href="https://stackoverflow.com/questions/55444120/understanding-the-output-shape-of-conv2d-layer-in-keras">https://stackoverflow.com/questions/55444120/understanding-the-output-shape-of-conv2d-layer-in-keras</a></p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/phd_dashboard/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Dashboard for Doctorate Recipients in the United States</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+    
+
+
+
+    </body>
+</html>
