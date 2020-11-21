@@ -6,7 +6,52 @@
     <description>Recent content in Tags on Mingxuan Yang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dashboard</title>
+      <link>https://Mingxuan-Yang.github.io/tags/dashboard/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/dashboard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://Mingxuan-Yang.github.io/tags/machine-learning/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plotly</title>
+      <link>https://Mingxuan-Yang.github.io/tags/plotly/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/plotly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://Mingxuan-Yang.github.io/tags/python/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Streamlit</title>
+      <link>https://Mingxuan-Yang.github.io/tags/streamlit/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://Mingxuan-Yang.github.io/tags/streamlit/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>classification</title>
       <link>https://Mingxuan-Yang.github.io/tags/classification/</link>
@@ -35,29 +80,11 @@
     </item>
     
     <item>
-      <title>dashboard</title>
-      <link>https://Mingxuan-Yang.github.io/tags/dashboard/</link>
-      <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://Mingxuan-Yang.github.io/tags/dashboard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>doctorate</title>
       <link>https://Mingxuan-Yang.github.io/tags/doctorate/</link>
       <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>https://Mingxuan-Yang.github.io/tags/doctorate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>plotly</title>
-      <link>https://Mingxuan-Yang.github.io/tags/plotly/</link>
-      <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://Mingxuan-Yang.github.io/tags/plotly/</guid>
       <description></description>
     </item>
     

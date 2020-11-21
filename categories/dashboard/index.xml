@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dashboard on Mingxuan Yang</title>
-    <link>https://Mingxuan-Yang.github.io/tags/dashboard/</link>
+    <link>https://Mingxuan-Yang.github.io/categories/dashboard/</link>
     <description>Recent content in Dashboard on Mingxuan Yang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/tags/dashboard/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://Mingxuan-Yang.github.io/categories/dashboard/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>COVID-19 Analysis</title>
       <link>https://Mingxuan-Yang.github.io/posts/covid_19/</link>
@@ -14,15 +14,6 @@
       
       <guid>https://Mingxuan-Yang.github.io/posts/covid_19/</guid>
       <description>Introduction Coronavirus disease 2019 (COVID-19) is a contagious respiratory and vascular disease. Since its outbreak in December 2019 from Wuhan, China, it has presented the world with many political, scientific and public health challenges. Some researchers identified some important nutritional considerations for the prevention and management of COVID-19 diseases, including the role of select micronutri- ents (vitamins and minerals), phytochemicals and probiotics in conferring protection against both viral infection and pathogenicity.</description>
-    </item>
-    
-    <item>
-      <title>Dashboard for Doctorate Recipients in the United States</title>
-      <link>https://Mingxuan-Yang.github.io/posts/phd_dashboard/</link>
-      <pubDate>Fri, 06 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://Mingxuan-Yang.github.io/posts/phd_dashboard/</guid>
-      <description>Introduction A doctorate is an advanced academic degree awarded by universities that demonstrates the recipient&amp;rsquo;s mastery in a certain field of study. From the perspective of institutions, the number of doctorate recipients, to some extent, can be viewed an indicator to measure its research ability. From the aspect of researchers, a doctor&amp;rsquo;s degree, though can take years and even educational debt to pursue, can qualify him/her to teach in a university in most countries.</description>
     </item>
     
   </channel>
